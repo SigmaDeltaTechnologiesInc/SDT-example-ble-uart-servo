@@ -1,4 +1,4 @@
-/* SDT-example-ble-uart-echo
+/* SDT-example-ble-uart-servo
  * 
  * Copyright (c) 2018 Sigma Delta Technologies Inc.
  * 
@@ -54,8 +54,8 @@ UARTService* pUartService;
 /* Variable */
 bool b_bleConnect = false;
 
-unsigned char pwm_periodMs = 20;   // 20ms
-float pwm_duty = 0.100;
+unsigned char uc_pwmPeriodMs = 20;   // 20ms
+float f_pwmDuty = 0.100;
 
 
 
@@ -90,11 +90,11 @@ void setPwmDuty(char num) {
 
     // serial_pc.printf("duty : %f\n", duty);
 
-    pwm_duty = duty;
+    f_pwmDuty = duty;
 }
 
 void callbackTickerPwm(void) {
-    int timeUs = pwm_periodMs * (pwm_duty * 1000);
+    int timeUs = uc_pwmPeriodMs * (f_pwmDuty * 1000);
     // serial_pc.printf("duty : %d\n", time);
 
     *pDo_servo = 1;
